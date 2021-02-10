@@ -60,9 +60,9 @@ export class CameraControl extends Component {
     }
 
     onDestroy () {
-        systemEvent.on(SystemEventType.KEY_DOWN, this.onKeyDown, this)
-        systemEvent.on(SystemEventType.KEY_UP, this.onKeyUp, this)
-        systemEvent.on(SystemEventType.MOUSE_WHEEL, this.onMouseWheel, this)
+        systemEvent.off(SystemEventType.KEY_DOWN, this.onKeyDown, this)
+        systemEvent.off(SystemEventType.KEY_UP, this.onKeyUp, this)
+        systemEvent.off(SystemEventType.MOUSE_WHEEL, this.onMouseWheel, this)
     }
 
     update (deltaTime: number) {
