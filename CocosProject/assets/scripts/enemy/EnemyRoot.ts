@@ -14,6 +14,9 @@ export class EnemyRoot extends Component {
     @property({ type: Prefab })
     enemyPrefab: Prefab | undefined = undefined
 
+    // 敌人容器
+    enemys: Node[] = []
+
     start() {
         // 旋转动作
         if (this.enemyInPosNode) {
@@ -46,9 +49,20 @@ export class EnemyRoot extends Component {
         // 走完销毁时扣血
         enemyAction.call(() => {
             // 扣血
-            enemy.destroy()
+            this.destroyEnemy(enemy)
         })
         enemyAction.start()
+
+        // 装入敌人
+        this.enemys.push(enemy)
+    }
+
+    destroyEnemy(enemy: Node) {
+        const index = this.enemys.indexOf(enemy)
+        if (index !== -1) {
+            this.enemys.splice(index, 1)
+        }
+        enemy.destroy()
     }
 
     renderEnemyDir(enemy: Node, dir: string) {

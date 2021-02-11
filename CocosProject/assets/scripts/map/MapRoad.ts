@@ -1,11 +1,10 @@
 
 import { _decorator, Component, Node } from 'cc'
-import { MapBlock } from './MapBlock'
 const { ccclass, property } = _decorator
 
 /** 敌人路线图块 */
 @ccclass('MapRoad')
-export class MapRoad extends MapBlock {
+export class MapRoad extends Component {
 
     @property({ type: Node })
     topNode: Node | undefined = undefined
