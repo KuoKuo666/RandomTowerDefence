@@ -1,9 +1,13 @@
-import { _decorator, Component, Node, systemEvent, SystemEventType, EventKeyboard, macro, EventMouse, Camera, Vec3, log, error, Vec2, tween, Tween } from 'cc'
+import { _decorator, Component, Node, systemEvent, SystemEventType, EventKeyboard, macro, EventMouse, Camera, Vec3, log, error, Vec2, tween, Tween, TERRAIN_HEIGHT_BASE } from 'cc'
 import { MapData } from '../../config/map'
+import { TowerRoot } from '../tower/TowerRoot'
 const { ccclass, property } = _decorator
 
 @ccclass('UserControl')
 export class UserControl extends Component {
+
+    @property({ type: TowerRoot })
+    towerRoot: TowerRoot | undefined = undefined
 
     /** 建造标志模型 */
     @property({ type: Node })
@@ -40,7 +44,7 @@ export class UserControl extends Component {
             const len = -(height / ray.d.y)
             // 求坐标
             const result = new Vec3()
-            ray.computeHit(result, len)
+            Vec3.scaleAndAdd(result, ray.o, ray.d, len)
             // 取当前 x 与 z 值
             this.renderBuildSignPos(result.x, result.z)
         }
@@ -56,7 +60,12 @@ export class UserControl extends Component {
         // 鼠标左键建造
         if (event.getButton() === 0) {
             if (this.isInBuildMode) {
-                console.error('建造: ' + this.buildIndex.toString())
+                log('建造: ' + this.buildIndex.toString())
+                if (this.towerRoot) {
+                    this.towerRoot.createTower(this.buildIndex.y * 10, this.buildIndex.x * 10, 0)
+                    // 建造完毕退出建造模式
+                    this.outBuildMode()
+                }
             }
         }
     }

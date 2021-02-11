@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "tower001",
+    "_name": "tower2",
     "_objFlags": 0,
     "_parent": null,
     "_children": [
@@ -114,7 +114,7 @@
     },
     "_materials": [
       {
-        "__uuid__": "512aa70a-3e43-47d2-9f79-b8ac6bfae267@22e2a"
+        "__uuid__": "ea613d82-dc5b-4020-8c63-2edea25f5ecb"
       }
     ],
     "_visFlags": 0,
@@ -217,7 +217,7 @@
     },
     "_materials": [
       {
-        "__uuid__": "512aa70a-3e43-47d2-9f79-b8ac6bfae267@dd992"
+        "__uuid__": "ea613d82-dc5b-4020-8c63-2edea25f5ecb"
       }
     ],
     "_visFlags": 0,
